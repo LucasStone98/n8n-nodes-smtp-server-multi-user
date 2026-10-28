@@ -14,11 +14,13 @@ A custom n8n node that starts an SMTP server and triggers workflows when emails 
 
 ## Installation
 
-### From npm (Recommended)
+### From npm (after first release)
 
 ```bash
 npm install n8n-nodes-smtp-server-multi-user
 ```
+
+Until the first npm release, install from source.
 
 ### From Source
 
