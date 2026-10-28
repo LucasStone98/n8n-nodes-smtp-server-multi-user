@@ -55,7 +55,23 @@ jobs:
         fi
         echo "Tag and package version match"
 
+    - name: Check npm version
+      id: npm_version
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: |
+        PACKAGE_NAME=$(node -p "require('./package.json').name")
+        PACKAGE_VERSION=$(node -p "require('./package.json').version")
+        if npm view "${PACKAGE_NAME}@${PACKAGE_VERSION}" version >/dev/null 2>&1; then
+          echo "exists=true" >> "$GITHUB_OUTPUT"
+          echo "${PACKAGE_NAME}@${PACKAGE_VERSION} is already published; skipping npm publish."
+        else
+          echo "exists=false" >> "$GITHUB_OUTPUT"
+          echo "${PACKAGE_NAME}@${PACKAGE_VERSION} is not published yet."
+        fi
+
     - name: Publish to npm
+      if: steps.npm_version.outputs.exists != 'true'
       run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -66,13 +82,13 @@ jobs:
       run: |
         PACKAGE_NAME=$(node -p "require('./package.json').name")
         PACKAGE_VERSION=$(node -p "require('./package.json').version")
-        for attempt in $(seq 1 30); do
+        for attempt in $(seq 1 60); do
           if npm view "${PACKAGE_NAME}@${PACKAGE_VERSION}" version >/dev/null 2>&1; then
             echo "Published ${PACKAGE_NAME}@${PACKAGE_VERSION}"
             exit 0
           fi
-          echo "Waiting for npm to publish ${PACKAGE_NAME}@${PACKAGE_VERSION} (attempt ${attempt}/30)..."
-          sleep 5
+          echo "Waiting for npm to publish ${PACKAGE_NAME}@${PACKAGE_VERSION} (attempt ${attempt}/60)..."
+          sleep 10
         done
         echo "Timed out waiting for npm publication"
         exit 1
