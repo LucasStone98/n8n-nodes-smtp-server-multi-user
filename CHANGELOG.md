@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.3.1
+
+- Added a prominent unmaintained-fork notice linking to the original GitHub repository and npm package.
+
 ## 0.3.0
 
 - Added multi-account SMTP authentication with the **User Accounts** collection.

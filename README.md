@@ -1,5 +1,7 @@
 # n8n SMTP Server Multi-User Node
 
+> **Unmaintained fork:** This project is a fork of [alexrster/n8n-nodes-smtp-server](https://github.com/alexrster/n8n-nodes-smtp-server), made using **DeepSeek V4.1 Flash**. It has no real plans to be kept updated. For the original project, see its [GitHub repository](https://github.com/alexrster/n8n-nodes-smtp-server) and [npm package](https://www.npmjs.com/package/n8n-nodes-smtp-server).
+
 [![CI](https://github.com/LucasStone98/n8n-nodes-smtp-server-multi-user/actions/workflows/ci.yml/badge.svg)](https://github.com/LucasStone98/n8n-nodes-smtp-server-multi-user/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/n8n-nodes-smtp-server-multi-user.svg)](https://www.npmjs.com/package/n8n-nodes-smtp-server-multi-user)
 
@@ -376,8 +378,8 @@ See [CHANGELOG.md](CHANGELOG.md) for a list of changes and version history.
 
 ## Acknowledgments
 
-- Originally created by Alex Yevtushenko
-- Maintained as a fork by LucasStone98
-- Built for the n8n community
+- Original project: [alexrster/n8n-nodes-smtp-server](https://github.com/alexrster/n8n-nodes-smtp-server) ([npm](https://www.npmjs.com/package/n8n-nodes-smtp-server))
+- Forked and extended by LucasStone98 with DeepSeek V4.1 Flash
+- This fork has no real plans to be kept updated
 - Uses [smtp-server](https://github.com/nodemailer/smtp-server) for SMTP functionality
 - Uses [mailparser](https://github.com/nodemailer/mailparser) for email parsing

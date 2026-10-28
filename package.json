@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-smtp-server-multi-user",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "SMTP Server Trigger Node for n8n with multi-user authentication and TLS",
 	"keywords": [
 		"n8n-community-node-package",
