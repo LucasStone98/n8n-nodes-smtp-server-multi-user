@@ -12,3 +12,5 @@ All notable changes to this project are documented in this file.
 - Added `authenticatedUser` to the emitted email data.
 - Added TLS and authentication integration tests.
 - Updated documentation with TLS setup, OpenSSL examples, client configuration, and troubleshooting.
+- Updated `smtp-server`, `mailparser`, and their type packages to patched releases.
+- Limited the published npm package to the runtime build and documentation.
