@@ -301,6 +301,10 @@ npm install -g n8n
 npx n8n --help
 ```
 
+### CI/CD
+
+See [.github/CI-CD.md](.github/CI-CD.md) for the GitHub Actions pipeline documentation.
+
 ## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
