@@ -275,7 +275,12 @@ export class SmtpServerMultiUserTrigger implements INodeType {
 		credentials: [
 			{
 				name: 'smtpServerTlsApi',
-				required: false,
+				required: true,
+				displayOptions: {
+					show: {
+						tlsMode: ['starttls', 'implicit'],
+					},
+				},
 			},
 		],
 		inputs: [],
@@ -317,6 +322,18 @@ export class SmtpServerMultiUserTrigger implements INodeType {
 				],
 				default: 'starttls',
 				description: 'How the SMTP server handles TLS connections',
+			},
+			{
+				displayName:
+					'TLS requires an SMTP Server TLS API credential. To create a test certificate, see the <a href="https://github.com/LucasStone98/n8n-nodes-smtp-server-multi-user#generating-a-test-certificate" target="_blank">test certificate guide</a>.',
+				name: 'tlsCredentialNotice',
+				type: 'notice',
+				default: '',
+				displayOptions: {
+					show: {
+						tlsMode: ['starttls', 'implicit'],
+					},
+				},
 			},
 			{
 				displayName: 'Minimum TLS Version',
@@ -445,10 +462,18 @@ export class SmtpServerMultiUserTrigger implements INodeType {
 			try {
 				tlsCredential = await this.getCredentials<SmtpServerTlsCredential>('smtpServerTlsApi');
 			} catch (error) {
+				const errorMessage = (error as Error).message;
+				const description =
+					errorMessage === 'Node does not require credentials' ||
+					errorMessage === 'Node does not have any credentials set' ||
+					errorMessage.startsWith('Node does not have any credentials set for')
+						? 'Select an SMTP Server TLS API credential, or set TLS Mode to Off.'
+						: errorMessage;
+
 				throw new NodeOperationError(
 					this.getNode(),
 					'TLS is enabled, but no SMTP Server TLS API credential is selected',
-					{ description: (error as Error).message },
+					{ description },
 				);
 			}
 		}

@@ -569,6 +569,19 @@ describe('SMTP TLS integration', () => {
 		);
 	});
 
+	test('replaces the optional-credential error with an actionable message', async () => {
+		const port = await getFreePort();
+		const params = triggerParams(port, 'starttls');
+		const { context } = createContext(params, [], async () => {
+			throw new Error('Node does not require credentials');
+		});
+
+		await expect(new SmtpServerMultiUserTrigger().trigger.call(context)).rejects.toMatchObject({
+			message: 'TLS is enabled, but no SMTP Server TLS API credential is selected',
+			description: 'Select an SMTP Server TLS API credential, or set TLS Mode to Off.',
+		});
+	});
+
 	test('fails activation when the certificate does not match the key', async () => {
 		const port = await getFreePort();
 		const params = triggerParams(port, 'starttls');

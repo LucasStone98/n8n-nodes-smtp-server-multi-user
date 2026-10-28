@@ -44,7 +44,7 @@ describe('SMTP Server Multi-User Node Integration', () => {
 			const description: INodeTypeDescription = node.description;
 			const properties = description.properties;
 
-			expect(properties).toHaveLength(8);
+			expect(properties).toHaveLength(9);
 
 			// Check port property
 			const portProperty = properties.find((p) => p.name === 'port');
@@ -129,15 +129,33 @@ describe('SMTP Server Multi-User Node Integration', () => {
 					tlsMode: ['off'],
 				},
 			});
+
+			// Check the TLS credential/test certificate guidance
+			const credentialNoticeProperty = properties.find((p) => p.name === 'tlsCredentialNotice');
+			expect(credentialNoticeProperty).toBeDefined();
+			expect(credentialNoticeProperty!.type).toBe('notice');
+			expect(credentialNoticeProperty!.displayOptions).toEqual({
+				show: {
+					tlsMode: ['starttls', 'implicit'],
+				},
+			});
+			expect(credentialNoticeProperty!.displayName).toContain(
+				'https://github.com/LucasStone98/n8n-nodes-smtp-server-multi-user#generating-a-test-certificate',
+			);
 		});
 
-		test('should reference the TLS credential', () => {
+		test('should reference the TLS credential only when TLS is enabled', () => {
 			const description: INodeTypeDescription = node.description;
 
 			expect(description.credentials).toEqual([
 				{
 					name: 'smtpServerTlsApi',
-					required: false,
+					required: true,
+					displayOptions: {
+						show: {
+							tlsMode: ['starttls', 'implicit'],
+						},
+					},
 				},
 			]);
 		});

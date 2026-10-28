@@ -65,7 +65,7 @@ npm run build
 | **Enable Authentication** | Boolean | false | Whether to enable SMTP authentication |
 | **User Accounts** | Fixed Collection | - | SMTP accounts allowed to authenticate; each entry has a username and a password |
 
-The **SMTP Server TLS API** credential is separate from the node parameters and holds the certificate, private key, and optional key passphrase. It is required whenever **TLS Mode** is not **Off**.
+The **SMTP Server TLS API** credential is separate from the node parameters and holds the certificate, private key, and optional key passphrase. The credential field is shown and required whenever **TLS Mode** is **STARTTLS** or **Implicit TLS**; it is hidden when **TLS Mode** is **Off**.
 
 #### User Accounts
 
@@ -115,6 +115,8 @@ When **TLS Mode** is **STARTTLS**, **Allow Authentication Without TLS** controls
 When **TLS Mode** is **Implicit TLS**, authentication is always encrypted. When **TLS Mode** is **Off**, authentication is always plaintext and the node shows a warning.
 
 #### Generating a Test Certificate
+
+n8n does not include a built-in certificate generator. Create the certificate outside n8n with OpenSSL (or obtain one from a trusted CA), then paste the generated PEM files into the **SMTP Server TLS API** credential.
 
 For local testing, create a self-signed certificate with a subject alternative name that matches the hostname your client uses:
 

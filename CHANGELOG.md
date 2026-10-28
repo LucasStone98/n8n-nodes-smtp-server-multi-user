@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.3.2
+
+- Made the **SMTP Server TLS API** credential required only when **TLS Mode** is **STARTTLS** or **Implicit TLS**.
+- Replaced the misleading `Node does not require credentials` activation error with an actionable credential message.
+- Added a node notice linking directly to the test certificate instructions.
+- Documented that n8n does not generate certificates in-app.
+
 ## 0.3.1
 
 - Added a prominent unmaintained-fork notice linking to the original GitHub repository and npm package.
