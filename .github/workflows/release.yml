@@ -60,6 +60,23 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+    - name: Verify npm publication
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: |
+        PACKAGE_NAME=$(node -p "require('./package.json').name")
+        PACKAGE_VERSION=$(node -p "require('./package.json').version")
+        for attempt in $(seq 1 30); do
+          if npm view "${PACKAGE_NAME}@${PACKAGE_VERSION}" version >/dev/null 2>&1; then
+            echo "Published ${PACKAGE_NAME}@${PACKAGE_VERSION}"
+            exit 0
+          fi
+          echo "Waiting for npm to publish ${PACKAGE_NAME}@${PACKAGE_VERSION} (attempt ${attempt}/30)..."
+          sleep 5
+        done
+        echo "Timed out waiting for npm publication"
+        exit 1
+
     - name: Create GitHub Release
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
