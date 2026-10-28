@@ -7,6 +7,10 @@
 
 A custom n8n node that starts an SMTP server and triggers workflows when emails are received. This node allows you to receive emails directly into your n8n workflows, enabling powerful email automation scenarios. Authentication supports multiple SMTP accounts, each with its own username and password. STARTTLS and implicit TLS (SMTPS) are supported with a server certificate stored in an n8n credential.
 
+## Screenshot
+
+![SMTP Server Multi-User Trigger node configured with STARTTLS](https://raw.githubusercontent.com/LucasStone98/n8n-nodes-smtp-server-multi-user/master/screenshots/screenshot-v0.3.2.png)
+
 ## Features
 
 - 🚀 **SMTP Server**: Starts a lightweight SMTP server to receive emails
