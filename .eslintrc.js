@@ -122,5 +122,13 @@ module.exports = {
 				'n8n-nodes-base/node-param-type-options-password-missing': 'error',
 			},
 		},
+		{
+			files: ['./credentials/**/*.ts'],
+			plugins: ['eslint-plugin-n8n-nodes-base'],
+			extends: ['plugin:n8n-nodes-base/credentials'],
+			rules: {
+				'n8n-nodes-base/cred-class-field-documentation-url-miscased': 'off',
+			},
+		},
 	],
 };

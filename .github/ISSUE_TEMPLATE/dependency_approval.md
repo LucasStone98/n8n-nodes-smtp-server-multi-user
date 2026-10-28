@@ -3,15 +3,15 @@ name: Dependency Approval Request
 about: Request approval for external dependencies
 title: 'Dependency Approval: smtp-server and mailparser for SMTP Server Node'
 labels: 'dependency-approval'
-assignees: 'alexrster'
+assignees: 'LucasStone98'
 
 ---
 
 ## Dependency Approval Request
 
 ### Package Information
-- **Package Name**: n8n-nodes-smtp-server
-- **Repository**: https://github.com/alexrster/n8n-nodes-smtp-server
+- **Package Name**: n8n-nodes-smtp-server-multi-user
+- **Repository**: https://github.com/LucasStone98/n8n-nodes-smtp-server-multi-user
 - **Purpose**: SMTP Server trigger node for receiving emails in n8n workflows
 
 ### Dependencies Requesting Approval
@@ -58,5 +58,5 @@ We request approval for these dependencies as they are fundamental to the node's
 
 ### Contact
 
-- **Author**: Alex Yevtushenko (a@qx.zone)
-- **Repository**: https://github.com/alexrster/n8n-nodes-smtp-server 
+- **Maintainer**: LucasStone98 (https://github.com/LucasStone98)
+- **Repository**: https://github.com/LucasStone98/n8n-nodes-smtp-server-multi-user

@@ -1,21 +1,32 @@
 {
-	"name": "n8n-nodes-smtp-server",
-	"version": "0.2.0",
-	"description": "SMTP Server Node for n8n",
+	"name": "n8n-nodes-smtp-server-multi-user",
+	"version": "0.3.0",
+	"description": "SMTP Server Trigger Node for n8n with multi-user authentication and TLS",
 	"keywords": [
 		"n8n-community-node-package",
 		"n8n",
-		"smtp"
+		"smtp",
+		"email",
+		"tls"
 	],
 	"license": "MIT",
-	"homepage": "https://github.com/alexrster/n8n-nodes-smtp-server",
+	"homepage": "https://github.com/LucasStone98/n8n-nodes-smtp-server-multi-user",
 	"author": {
 		"name": "Alex Yevtushenko",
 		"email": "a@qx.zone"
 	},
+	"contributors": [
+		{
+			"name": "LucasStone98",
+			"url": "https://github.com/LucasStone98"
+		}
+	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/alexrster/n8n-nodes-smtp-server.git"
+		"url": "https://github.com/LucasStone98/n8n-nodes-smtp-server-multi-user.git"
+	},
+	"bugs": {
+		"url": "https://github.com/LucasStone98/n8n-nodes-smtp-server-multi-user/issues"
 	},
 	"engines": {
 		"node": ">=20.15"
@@ -24,21 +35,26 @@
 	"scripts": {
 		"build": "npx rimraf dist && tsc && gulp build:icons",
 		"dev": "tsc --watch",
-		"format": "prettier nodes --write",
-		"lint": "eslint nodes package.json",
-		"lintfix": "eslint nodes package.json --fix",
+		"format": "prettier nodes credentials tests package.json --write",
+		"lint": "eslint nodes credentials package.json",
+		"lintfix": "eslint nodes credentials package.json --fix",
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage",
-		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes package.json"
+		"prepublishOnly": "npm run build && eslint -c .eslintrc.prepublish.js nodes credentials package.json"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"CHANGELOG.md",
+		"DEPENDENCIES.md"
 	],
 	"n8n": {
 		"n8nNodesApiVersion": 1,
+		"credentials": [
+			"dist/credentials/SmtpServerTlsApi.credentials.js"
+		],
 		"nodes": [
-			"dist/nodes/SmtpServer/SmtpServer.node.js"
+			"dist/nodes/SmtpServerMultiUserTrigger/SmtpServerMultiUserTrigger.node.js"
 		]
 	},
 	"devDependencies": {
@@ -48,6 +64,7 @@
 		"eslint-plugin-n8n-nodes-base": "^1.16.3",
 		"gulp": "^5.0.0",
 		"jest": "^30.0.4",
+		"nodemailer": "^10.2.1",
 		"prettier": "^3.5.3",
 		"ts-jest": "^29.4.0",
 		"typescript": "^5.8.2"

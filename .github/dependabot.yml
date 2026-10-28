@@ -9,9 +9,9 @@ updates:
       time: "09:00"
     open-pull-requests-limit: 10
     reviewers:
-      - "alexrster"
+      - "LucasStone98"
     assignees:
-      - "alexrster"
+      - "LucasStone98"
     commit-message:
       prefix: "chore"
       include: "scope"

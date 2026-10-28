@@ -5,6 +5,7 @@ module.exports = {
 	testMatch: ['**/*.test.ts'],
 	collectCoverageFrom: [
 		'nodes/**/*.ts',
+		'credentials/**/*.ts',
 		'!nodes/**/*.d.ts',
 		'!nodes/**/embedded/**/*.ts', // Exclude embedded files from coverage for now
 	],

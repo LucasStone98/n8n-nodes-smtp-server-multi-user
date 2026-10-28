@@ -1,6 +1,6 @@
 # Dependencies Explanation
 
-This document explains the external dependencies used in the n8n SMTP Server node and why they are necessary.
+This document explains the external dependencies used in the n8n SMTP Server Multi-User node and why they are necessary.
 
 ## Core Dependencies
 
@@ -63,9 +63,10 @@ This document explains the external dependencies used in the n8n SMTP Server nod
 
 1. **Authentication**: The node supports SMTP authentication to prevent unauthorized access
 2. **Network Security**: Users can bind to localhost for internal use only
-3. **Input Validation**: All email data is properly parsed and validated
-4. **Error Handling**: Comprehensive error handling prevents crashes
-5. **Logging**: Proper logging for debugging and monitoring
+3. **TLS**: STARTTLS and implicit TLS (SMTPS) are handled by Node.js's built-in `tls` module using a certificate stored in an n8n credential
+4. **Input Validation**: All email data is properly parsed and validated
+5. **Error Handling**: Comprehensive error handling prevents crashes
+6. **Logging**: Proper logging for debugging and monitoring
 
 ## Maintenance
 
@@ -76,7 +77,7 @@ This document explains the external dependencies used in the n8n SMTP Server nod
 
 ## Request for Approval
 
-These dependencies are essential for the core functionality of the SMTP Server node. Without them, it would be impossible to:
+These dependencies are essential for the core functionality of the SMTP Server Multi-User node. Without them, it would be impossible to:
 
 1. Receive emails via SMTP protocol
 2. Parse email content and attachments

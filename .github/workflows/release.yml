@@ -31,7 +31,7 @@ jobs:
 
     - name: Verify build output
       run: |
-        if [ ! -f "dist/nodes/SmtpServer/SmtpServer.node.js" ]; then
+        if [ ! -f "dist/nodes/SmtpServerMultiUserTrigger/SmtpServerMultiUserTrigger.node.js" ]; then
           echo "Build output not found!"
           exit 1
         fi

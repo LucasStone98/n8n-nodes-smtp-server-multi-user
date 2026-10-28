@@ -31,14 +31,17 @@ jobs:
       run: npm run lint
 
     - name: Check formatting
-      run: npx prettier --check nodes package.json
+      run: npx prettier --check nodes credentials tests package.json
+
+    - name: Run tests
+      run: npm test
 
     - name: Build project
       run: npm run build
 
     - name: Verify build output
       run: |
-        if [ ! -f "dist/nodes/SmtpServer/SmtpServer.node.js" ]; then
+        if [ ! -f "dist/nodes/SmtpServerMultiUserTrigger/SmtpServerMultiUserTrigger.node.js" ]; then
           echo "Build output not found!"
           exit 1
         fi

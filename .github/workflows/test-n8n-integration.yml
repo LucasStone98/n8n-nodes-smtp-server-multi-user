@@ -51,10 +51,13 @@ jobs:
 
     - name: Test SMTP server functionality
       run: |
-        # This is a basic test to ensure the node can be instantiated
+        # This is a basic test to ensure the node and credential can be instantiated
         node -e "
-          const { SmtpServer } = require('./dist/nodes/SmtpServer/SmtpServer.node.js');
-          const node = new SmtpServer();
+          const { SmtpServerMultiUserTrigger } = require('./dist/nodes/SmtpServerMultiUserTrigger/SmtpServerMultiUserTrigger.node.js');
+          const { SmtpServerTlsApi } = require('./dist/credentials/SmtpServerTlsApi.credentials.js');
+          const node = new SmtpServerMultiUserTrigger();
+          const credential = new SmtpServerTlsApi();
           console.log('Node instantiated successfully');
           console.log('Node description:', node.description.displayName);
+          console.log('Credential description:', credential.displayName);
         "
